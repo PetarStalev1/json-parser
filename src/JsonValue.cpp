@@ -3,39 +3,39 @@
 
 
 
-JSONValue::Type JSONValue::type() const {
+JsonValue::Type JsonValue::type() const {
 	return static_cast<Type>(data.index());
 }
 
-bool JSONValue::isNull() const
+bool JsonValue::isNull() const
 {
 	return std::holds_alternative<std::nullptr_t>(data);
 }
 
-bool JSONValue::isBool() const {
+bool JsonValue::isBool() const {
 	return std::holds_alternative<bool>(data);
 }
 
-bool JSONValue::isNumber() const
+bool JsonValue::isNumber() const
 {
 	return std::holds_alternative<double>(data);
 }
 
-bool JSONValue::isString() const{
+bool JsonValue::isString() const{
 	return std::holds_alternative<std::string>(data);
 }
 
-bool JSONValue::isArray() const
+bool JsonValue::isArray() const
 {
 	return std::holds_alternative<Array>(data);
 }
 
-bool JSONValue::isObject() const
+bool JsonValue::isObject() const
 {
 	return std::holds_alternative<Object>(data);
 }
 
-bool JSONValue::asBool() const
+bool JsonValue::asBool() const
 {
 	if (!isBool())
 	{
@@ -44,7 +44,7 @@ bool JSONValue::asBool() const
 	return std::get<bool>(data);
 }
 
-double JSONValue::asNumber() const
+double JsonValue::asNumber() const
 {
 	if (!isNumber())
 	{
@@ -53,7 +53,7 @@ double JSONValue::asNumber() const
 	return std::get<double>(data);
 }
 
-const std::string& JSONValue::asString() const
+const std::string& JsonValue::asString() const
 {
 	if (!isString())
 	{
@@ -62,7 +62,7 @@ const std::string& JSONValue::asString() const
 	return std::get<std::string>(data);
 }
 
-const JSONValue::Array& JSONValue::asArray() const
+const JsonValue::Array& JsonValue::asArray() const
 {
 	if (!isArray())
 	{
@@ -71,7 +71,7 @@ const JSONValue::Array& JSONValue::asArray() const
 	return std::get<Array>(data);
 }
 
-const JSONValue::Object& JSONValue::asObject() const
+const JsonValue::Object& JsonValue::asObject() const
 {
 	if (!isObject())
 	{
@@ -80,7 +80,7 @@ const JSONValue::Object& JSONValue::asObject() const
 	return std::get<Object>(data);
 }
 
-const JSONValue& JSONValue::operator[](size_t index) const
+const JsonValue& JsonValue::operator[](size_t index) const
 {
 	const Array& arr = asArray();
 	if (index >= arr.size())
@@ -90,7 +90,7 @@ const JSONValue& JSONValue::operator[](size_t index) const
 	return arr[index];
 }
 
-const JSONValue& JSONValue::operator[](const std::string& key) const
+const JsonValue& JsonValue::operator[](const std::string& key) const
 {
 	const Object& obj = asObject();
 	auto it = obj.find(key);

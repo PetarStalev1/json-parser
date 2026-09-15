@@ -22,7 +22,7 @@ endif()
 add_library(JsonParserLib
     src/JsonValue.cpp
     src/Parser.cpp
-)
+ "include/json/Parser.h")
 
 target_include_directories(JsonParserLib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -35,7 +35,7 @@ endif()
 # --- Demo/example изпълним файл ---
 add_executable(JsonParserApp
     examples/main.cpp
-)
+ "include/json/Parser.h")
 
 target_link_libraries(JsonParserApp PRIVATE JsonParserLib)
 

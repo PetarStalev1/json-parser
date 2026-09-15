@@ -10,10 +10,10 @@
 #include <variant>
 #include <cstdint>
 
-class JSONValue {
+class JsonValue {
 public:
-	using Array = std::vector<JSONValue>;
-	using Object = std::map<std::string, JSONValue>;
+	using Array = std::vector<JsonValue>;
+	using Object = std::map<std::string, JsonValue>;
 
 	enum class Type {
 		Null, Bool, Number, String, Array, Object
@@ -21,18 +21,18 @@ public:
 private:
 	std::variant<std::nullptr_t, bool, double, std::string, Array, Object> data;
 public:
-	JSONValue() : data(nullptr){}
-	JSONValue(std::nullptr_t) : data(nullptr) {}
-	JSONValue(bool b) : data(b) {}
-	JSONValue(double d) : data(d) {}
-	JSONValue(int i) : data(static_cast<double>(i)) {}
-	JSONValue(const std::string& s) : data(s) {}
-	JSONValue(const std::string&& s) : data(std::move(s)) {}
-	JSONValue(const char* c) : data(std::string(c)) {}
-	JSONValue(const Array& arr) : data(arr) {}
-	JSONValue(const Array&& arr) : data(std::move(arr)) {}
-	JSONValue(const Object& obj) : data(obj) {}
-	JSONValue(const Object&& obj) : data(std::move(obj)) {}
+	JsonValue() : data(nullptr){}
+	JsonValue(std::nullptr_t) : data(nullptr) {}
+	JsonValue(bool b) : data(b) {}
+	JsonValue(double d) : data(d) {}
+	JsonValue(int i) : data(static_cast<double>(i)) {}
+	JsonValue(const std::string& s) : data(s) {}
+	JsonValue(const std::string&& s) : data(std::move(s)) {}
+	JsonValue(const char* c) : data(std::string(c)) {}
+	JsonValue(const Array& arr) : data(arr) {}
+	JsonValue(const Array&& arr) : data(std::move(arr)) {}
+	JsonValue(const Object& obj) : data(obj) {}
+	JsonValue(const Object&& obj) : data(std::move(obj)) {}
 
 
 	Type type() const;
@@ -49,8 +49,8 @@ public:
 	const Array& asArray() const;
 	const Object& asObject() const;
 
-	const JSONValue& operator[](size_t index) const;
-	const JSONValue& operator[](const std::string& key) const;
+	const JsonValue& operator[](size_t index) const;
+	const JsonValue& operator[](const std::string& key) const;
 };
 
 
